@@ -439,6 +439,18 @@ def icon_ship(p, x, y, w, h, c):
                 (cx + dx * r * 0.40 - dy * r * 0.18, cy + dy * r * 0.40 + dx * r * 0.18),
                 (cx + dx * r * 0.40 + dy * r * 0.18, cy + dy * r * 0.40 - dx * r * 0.18)], RED)
 
+def icon_quake(p, x, y, w, h, c):
+    """A seismograph trace: a steady line, one violent spike, a steady line."""
+    mid = y + h / 2
+    p.line([(x + 2, mid), (x + w * 0.24, mid)], c, 4)
+    p.line([(x + w * 0.24, mid), (x + w * 0.31, mid), (x + w * 0.36, y + h * 0.16),
+            (x + w * 0.42, y + h * 0.86), (x + w * 0.48, y + h * 0.05),
+            (x + w * 0.54, y + h * 0.90), (x + w * 0.60, y + h * 0.32),
+            (x + w * 0.66, y + h * 0.64), (x + w * 0.72, mid),
+            (x + w - 2, mid)], c, 4)
+    for cx in (x + w * 0.24, x + w * 0.72):
+        p.ellipse([cx - 3, mid - 3, cx + 3, mid + 3], fill=INK)
+
 
 # A coarse world, 64 columns of longitude by 30 of latitude: '#' is land.
 # Enough resolution to be read as the world at map size, no more.
@@ -497,7 +509,7 @@ ICON = {
     "blast": icon_blast, "people": icon_people, "derrick": icon_derrick,
     "hospital": icon_hospital, "bat": icon_bat, "server": icon_server,
     "robot": icon_robot, "probe": icon_probe, "planet": icon_planet,
-    "art": icon_art, "ship": icon_ship,
+    "art": icon_art, "ship": icon_ship, "quake": icon_quake,
 }
 
 
@@ -519,11 +531,11 @@ LEADS = [
      "NATO says it will defend every inch of Polish territory after projectiles land "
      "there; Moscow says a Kaliningrad-bound ship was hit by drones in the Gulf of Finland.",
      "BBC, Reuters, Al Jazeera", "missile"),
-    (3, "Americas", "CULIACAN, MEXICO", "DRUGS",
-     "Mexico seizes a top cartel boss and violence follows",
-     "El Chapo Isidro, on the FBI's ten most wanted, is taken in a military operation; "
-     "eleven are killed in the burst of violence that follows in the north.",
-     "CBS, Reuters, NY Post", "militia"),
+    (3, "Middle East", "RIYADH \u00b7 JIZAN", "WAR",
+     "Five Houthi missiles are shot down over Saudi Arabia",
+     "Three are destroyed over Riyadh before dawn and two over Jizan, a day after the "
+     "Saudi-led coalition struck Hodeidah port and Sanaa.",
+     "AFP, Reuters, Al Arabiya", "missile"),
 ]
 
 CARDS = [
@@ -534,7 +546,7 @@ CARDS = [
      "Marches across France, on a lower turnout", "Protests stay largely peaceful as the budget fight drags on.",
      "U.S. News", "strike"),
     (6, "Europe", "BERLIN", "EUROPE",
-     "Protesters and police clash in Berlin", "Young Europeans march under the banner of fighting for their future.",
+     "Protesters and police clash in Berlin", "Young Europeans march under one banner: fight for our future, not their wars.",
      "Yeni Safak, Courthouse", "strike"),
     (7, "Europe", "HELSINKI", "BALTIC",
      "Finland suspects a Russian airspace violation", "A helicopter is said to have crossed the border; security is tightened.",
@@ -542,13 +554,13 @@ CARDS = [
     (8, "Middle East", "GAZA", "GAZA",
      "Israeli fire kills six Palestinians", "Civil defence reports strikes across Gaza, including one on an aid vehicle.",
      "U.S. News, L'Orient Today", "blast"),
-    (9, "Middle East", "SOUTHERN LEBANON", "LEBANON",
+    (9, "Middle East", "TYRE, LEBANON", "CEASEFIRE",
      "Israel strikes southern Lebanon towns", "Attacks continue despite the ceasefire, damaging several districts.",
      "Yeni Safak, TRT", "blast"),
     (10, "Middle East", "STRAIT OF HORMUZ", "IRAN",
      "Three tankers struck as Iran shows off launchers", "Attacks in the strait reach their highest level since the war began.",
      "The Independent, ABC", "ship"),
-    (11, "Middle East", "JERUSALEM", "IRAN",
+    (11, "Middle East", "TEL AVIV", "IRAN",
      "Netanyahu presses Trump for new strikes on Iran", "Reports say the Israeli leader is pushing for another round.",
      "Hurriyet", "nuclear"),
     (12, "Americas", "BRASILIA", "BRAZIL",
@@ -575,48 +587,48 @@ CARDS = [
     (19, "Africa", "MOGADISHU", "SOMALIA",
      "Uganda hands over five bases in its exit plan", "The drawdown of the African Union mission begins in earnest.",
      "The EastAfrican", "defence"),
-    (20, "Africa", "LAGOS", "NIGERIA",
-     "Four dead as a funeral boat capsizes", "A boat carrying mourners overturns, killing four.",
-     "Channel Africa", "ship"),
-    (21, "Oceania", "SUVA", "PACIFIC",
-     "Pacific states press COP31 on climate finance", "Island nations demand money as the summit stalls in Antalya.",
-     "Guardian", "climate"),
+    (20, "Asia", "DAVAO", "AVIATION",
+     "A jet lands safely after an engine fire alert", "All 146 aboard Air Niugini's 767 are safe after it diverts to Davao.",
+     "AP, Reuters", "probe"),
+    (21, "Americas", "CULIACAN, MEXICO", "DRUGS",
+     "Mexico seizes a cartel kingpin and violence follows", "El Chapo Isidro, on the FBI's ten most wanted, is taken; eleven die in the aftermath.",
+     "CBS, Reuters", "militia"),
     (22, "Global", "WASHINGTON", "CYBER",
      "USDA and the FBI breached in a wave of outages", "Hackers hit federal systems amid a spate of technology failures.",
      "Guardian, NBC", "server"),
     (23, "Global", "NEW YORK", "MARKETS",
      "S&P 500 set for its longest losing run since 2020", "Technology's worst week since the pandemic drags the index down.",
      "Bloomberg", "chart"),
-    (24, "Global", "PASADENA", "SPACE",
-     "Two Mars spacecraft go quiet at once", "NASA chases radio and wheel glitches on two missions together.",
-     "Around Prague, Space.com", "planet"),
+    (24, "Americas", "LIMA, PERU", "DISASTER",
+     "A magnitude 6.7 quake shakes the Peruvian Andes", "The tremor strikes the central highlands, with shaking felt across the region.",
+     "Reuters, USGS", "quake"),
     (25, "Global", "PASADENA", "SPACE",
      "Voyager 1 is now a light-day away", "Light takes 24 hours to reach the probe, and it has stopped sending science.",
      "ScienceDaily, Live Science", "probe"),
-    (26, "Global", "CAPE CANAVERAL", "SPACE",
-     "A secret Space Force payload flies", "A Falcon 9 booster flies for an eleventh time, carrying a classified satellite.",
-     "Around Prague", "probe"),
-    (27, "Global", "PARIS", "SPACE",
-     "Europe picks a seven-spacecraft plasma observatory", "ESA selects the mission as its next medium-class science launch.",
-     "CASRAI", "probe"),
+    (26, "Oceania", "DILI, TIMOR-LESTE", "DISASTER",
+     "A magnitude 6.8 quake rocks Timor-Leste", "Shaking is reported as far away as northern Australia along the Pacific Ring of Fire.",
+     "ABC, USGS", "quake"),
+    (27, "Europe", "LUHANSK", "WAR",
+     "Six killed in a Ukrainian drone attack", "Russia reports the deaths in the occupied Luhansk region.",
+     "Reuters, Al Jazeera", "blast"),
     (28, "Global", "GENEVA", "DISASTER",
      "An X-ray telescope opens its eyes after eight years", "The instrument finally begins observing the sky.",
      "ScienceDaily", "art"),
     (29, "Europe", "ROME", "ITALY",
      "An ex-police chief is found dead facing inquiry", "He was under investigation over a 1992 bombing; Meloni expresses shock.",
      "KSAT", "gavel"),
-    (30, "Europe", "PARIS", "CULTURE",
-     "Depardieu and Houellebecq under investigation", "The actor and the author face sexual assault inquiries.",
-     "U.S. News", "gavel"),
+    (30, "Europe", "KRYVYI RIH", "WAR",
+     "A ballistic missile hits Zelensky's hometown", "Two are killed and scores wounded in the strike on Kryvyi Rih.",
+     "Al Jazeera, Guardian", "missile"),
     (31, "Europe", "LONDON", "ENERGY",
      "An early polar vortex breakdown threatens gas stocks", "Europe's reserves are already low before winter bites.",
      "CNBC", "climate"),
-    (32, "Asia", "DHAKA", "CRICKET",
-     "Mushfiqur ruled out of the second Test", "A groin injury removes him from the series against South Africa.",
-     "Cricbuzz, Sky Sports", "bat"),
-    (33, "Americas", "TORONTO", "CANADA",
-     "Canada sees no shift in US military ties", "The defence minister plays down the Pentagon's new restrictions.",
-     "U.S. News, WSLS", "defence"),
+    (32, "Europe", "KYIV", "WAR",
+     "Zelensky: the Crimean bridge 'will not stay'", "He warns Russia is stepping up double-tap strikes on Ukrainian cities.",
+     "NBC, Kyiv Independent", "bridge"),
+    (33, "Global", "WASHINGTON", "TECH",
+     "Trump vows a tax on data centres built abroad", "He calls the penalty 'tremendous' but gives no rate or timetable.",
+     "ABC, Reuters", "server"),
     (34, "Europe", "BRUSSELS", "BUDGET",
      "France calls the EU budget proposal disappointing", "The French presidency pushes back on the latest draft.",
      "U.S. News", "currency"),
@@ -650,20 +662,20 @@ def region_counts():
 
 # ----------------------------------------------------------------- layout ---
 TIMELINE = [
-    ("00:30", "COP31 draft drops fossil fuels"),
-    ("05:00", "Russian projectiles hit Poland"),
-    ("08:00", "Marches begin across France"),
+    ("00:09", "a 6.7 quake strikes central Peru"),
+    ("02:30", "three missiles downed over Riyadh"),
+    ("06:00", "Russian projectiles hit Poland"),
+    ("08:00", "marches begin across France"),
     ("11:00", "Mexico storms the cartel safehouse"),
-    ("14:00", "Three tankers struck at Hormuz"),
-    ("17:00", "Berlin protest turns to clashes"),
+    ("14:00", "three tankers struck at Hormuz"),
     ("21:00", "S&P 500 ends its fifth week down"),
 ]
 
 STATS = [
-    ("11", "killed in the violence after the cartel arrest"),
+    ("6.7", "magnitude of the quake that shook central Peru"),
+    ("5", "Houthi missiles shot down over Riyadh and Jizan"),
     ("3", "tankers struck in the Strait of Hormuz"),
-    ("6", "Palestinians killed in Israeli strikes on Gaza"),
-    ("16", "killed in Khartoum in a day of insecurity"),
+    ("146", "people safe after a jet's emergency landing"),
     ("24h", "the time light now takes to reach Voyager 1"),
     ("8yrs", "an X-ray telescope waited to open its eyes"),
 ]
@@ -685,7 +697,7 @@ def masthead(p, y):
 
     # the deck: four teasers, comma-separated by interpuncts
     deck = ("COP31 deadlocks over fossil fuels  \u00b7  Russian missiles cross into Poland  \u00b7  "
-            "Mexico seizes a cartel kingpin  \u00b7  Europe's young march again")
+            "Five Houthi missiles shot down over Saudi Arabia")
     f = p.font(SERIF_I, 15)
     for line in p.wrap(deck, f, W - 2 * M - 260):
         p.text(M, y, line, f, INK2)
@@ -864,17 +876,17 @@ TRUST_COLOR = {2: "#2F7D4F", 1: "#B8791F", 0: "#8A8A8A"}
 
 # Where each story happened, for the map pins: latitude, longitude.
 PLACE = {
-    1: (36.9, 30.7), 2: (52.2, 21.0), 3: (24.8, -107.4), 4: (50.4, 30.5),
+    1: (36.9, 30.7), 2: (52.2, 21.0), 3: (24.7, 46.7), 4: (50.4, 30.5),
     5: (48.9, 2.4), 6: (52.5, 13.4), 7: (60.2, 24.9), 8: (31.5, 34.5),
     9: (33.3, 35.4), 10: (26.6, 56.3), 11: (31.8, 35.2), 12: (-15.8, -47.9),
     13: (24.8, -107.4), 14: (14.6, 121.0), 15: (-6.2, 106.8), 16: (39.0, 125.8),
-    17: (37.6, 127.0), 18: (15.5, 32.5), 19: (2.0, 45.3), 20: (6.5, 3.4),
-    21: (-18.1, 178.4), 22: (38.9, -77.0), 23: (40.7, -74.0), 24: (34.1, -118.1),
-    25: (34.1, -118.1), 26: (28.4, -80.6), 27: (48.9, 2.4), 28: (46.2, 6.1),
-    29: (41.9, 12.5), 30: (48.9, 2.4), 31: (51.5, -0.1), 32: (23.8, 90.4),
-    33: (43.7, -79.4), 34: (50.8, 4.4), 35: (9.0, 38.7), 36: (-1.3, 36.8),
+    17: (37.6, 127.0), 18: (15.5, 32.5), 19: (2.0, 45.3), 20: (7.1, 125.6),
+    21: (24.8, -107.4), 22: (38.9, -77.0), 23: (40.7, -74.0), 24: (-11.2, -75.5),
+    25: (34.1, -118.1), 26: (-8.6, 125.6), 27: (48.6, 39.3), 28: (46.2, 6.1),
+    29: (41.9, 12.5), 30: (47.9, 33.4), 31: (51.5, -0.1), 32: (50.4, 30.5),
+    33: (38.9, -77.0), 34: (50.8, 4.4), 35: (9.0, 38.7), 36: (-1.3, 36.8),
 }
-# All 21 November stories have a terrestrial dateline, so none sit off the map.
+# Every story has a terrestrial dateline; the X-ray telescope observes from orbit.
 OFFMAP = set()
 
 

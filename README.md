@@ -24,22 +24,25 @@ The three leads:
 2. **Russian missiles and drones cross into NATO airspace.** NATO says it will
    defend every inch of Polish territory after projectiles land there, and Moscow
    says a Kaliningrad-bound ship was hit by drones in the Gulf of Finland.
-3. **Mexico seizes a top cartel boss and violence follows.** El Chapo Isidro, on
-   the FBI's ten most wanted, is taken in a military operation; eleven are killed
-   in the burst of violence that follows in the north.
+3. **Five Houthi missiles are shot down over Saudi Arabia.** Three are destroyed
+   over Riyadh before dawn and two over Jizan, a day after the Saudi-led coalition
+   struck Hodeidah port and Sanaa.
 
 The rest of the day, across regions: a double-tap missile strike in Kyiv that
 killed a seven-year-old, marches across France on a lower turnout, clashes in
 Berlin, a suspected Russian airspace violation over Finland, Israeli fire that
-killed six Palestinians in Gaza, strikes on southern Lebanon despite the
-ceasefire, three tankers struck in the Strait of Hormuz, Netanyahu pressing
-Trump for new strikes on Iran, Bolsonaro moved to intensive care, an EU-Indonesia
-free-trade deal, the Philippines and Chile signing their first pact, Kim touring
-factories after an apparent snub, tech stocks' worst week since the pandemic,
-sixteen killed in Khartoum, Uganda handing over five bases in Somalia, a funeral
-boat capsizing in Nigeria, Pacific states pressing COP31 on finance, the FBI and
-USDA breached, two Mars spacecraft going quiet at once, Voyager 1 now a light-day
-away, a classified Space Force launch, ESA's new plasma observatory, and more.
+killed six Palestinians in Gaza, strikes on Tyre and southern Lebanon despite the
+ceasefire, three tankers struck in the Strait of Hormuz, Netanyahu pressing Trump
+for new strikes on Iran, Zelensky saying the Crimean bridge "will not stay",
+Bolsonaro moved to intensive care, Mexico seizing the cartel kingpin El Chapo
+Isidro and eleven dying in the aftermath, a magnitude 6.7 earthquake in the
+Peruvian Andes, a magnitude 6.8 quake off Timor-Leste felt in Australia, an
+Air Niugini jet landing safely at Davao with all 146 aboard after an engine fire
+alert, Trump vowing a tax on data centres built abroad, an EU-Indonesia
+free-trade deal, the Philippines and Chile signing their first pact, tech stocks'
+worst week since the pandemic, sixteen killed in Khartoum, Uganda handing over
+five bases in Somalia, the FBI and USDA breached, Voyager 1 now a light-day away,
+and more.
 
 Under the masthead, two strips give the day a spine: **the day in UTC**, a
 seven-stop chronology from the COP31 draft at 00:30 to the S&P 500 closing its
@@ -60,7 +63,7 @@ type stays clean at the size the judge reads it. Redrawing it is deterministic,
 byte for byte.
 
 `verify.py` checks the page geometrically, since a page that overflows a column
-is a page that reads as broken: every one of the 255 text lines against the
+is a page that reads as broken: every one of the 258 text lines against the
 margins and the band it belongs to, and every block against its own cell.
 
 ## Sources
